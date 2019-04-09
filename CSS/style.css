@@ -1,0 +1,88 @@
+body {
+  font-family: 'Helvetica', cursive;
+  font-size: 1.5em;
+  margin: 1em;
+  padding: 1em;
+  background-color: #f2f2f2;
+
+}
+
+button {
+  font-family: 'Helvetica', cursive;
+  font-size: 1em;
+  background-color: #cccccc;
+  border-radius: 0.5em;
+  margin: 0.5em;
+  padding: 0.3em;
+
+}
+
+button:hover {
+  background-color: #333333;
+  color: white;
+}
+
+.loginBox{
+  margin-bottom: 1em;
+  border-radius: 40%;
+  display: inline-block;
+  float: right;
+
+
+}
+
+.tabTitle {
+  padding: 0 0.4em 0 0.4em;
+  background-color: #cccccc;
+  border: 1px solid #999999;
+}
+
+.tabContent {
+  border: 1px solid #999999;
+  height: 4em;
+}
+
+.tabs {
+  padding: 3em;
+  align-items: left;
+
+}
+
+ul {
+  list-style-type: none;
+}
+
+#destinations {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 1em;
+  text-align: center;
+  align-items: center;
+}
+
+input {
+  font-size: 1em;
+  padding: 0.4em;
+  margin: 0.5em auto 0.5em auto;
+  display: block;
+  border-radius: 0.5em;
+  border: inset 3px;
+}
+
+#addCityButton {
+  width: 8em;
+}
+
+h3 {
+  text-align: center;
+}
+
+span {
+  cursor: pointer;
+}
+
+.selectedClass {
+  background-color: #595959;
+  color: white;
+}
