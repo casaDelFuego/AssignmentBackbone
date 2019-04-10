@@ -37,14 +37,14 @@ button:hover {
   border: 1px solid #999999;
 }
 
-.tabContent {
+.content {
   border: 1px solid #999999;
   height: 4em;
 }
 
 .tabs {
-  padding: 3em;
   align-items: left;
+  margin-top: 3em;
 
 }
 

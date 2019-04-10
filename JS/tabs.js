@@ -2,40 +2,40 @@ const tabTitles = [ 'Flight', 'Hotel', 'Car' ];
 const tabContent = [ 'Here you can find the best flight' , 'Book a hotel room here and get the best price', 'Rent a car here'];
 
 let TabModel = Backbone.Model.extend({
-   defaults: function(){
-     return {
-        selectedTab: 0
-     }
-   },
+  defaults: function(){
+    return {
+      selectedTab: 1
+    }
+  },
 
-   select: function(num){
-     this.save({selectedTab: num})
-   },
+  select: function(num){
+    this.save({selectedTab: num})
+  },
 
-   sync: function(){}
+  sync: function(){}
 });
 
 let TabView = Backbone.View.extend({
   initialize: function() {
-		this.listenTo(this.model, 'change', this.render);
-	},
+    this.listenTo(this.model, 'change', this.render);
+  },
 
   render: function(){
     let tabIndex = this.model.get('selectedTab');
     let activeContent = tabContent[tabIndex];
     let titlesHtml = tabTitles.map((x,i)=>{
-        let selectedClass = '';
-        if (i===tabIndex){
-          selectedClass = 'selectedClass'
-        }
-       return `<span data-idx="${i}", class="tabTitle ${selectedClass}">${x}</span>`
+      let selectedClass = '';
+      if (i===tabIndex){
+        selectedClass = 'selectedClass'
+      }
+      return `<span data-idx="${i}", class="tabTitle ${selectedClass}">${x}</span>`
     }).join('');
-    this.$el.html(`<div class="tabTitles">${titlesHtml}</br><div class="tabContent"></br>${activeContent}</div></div>`);
+    this.$el.html(`<div class="tabTitles">${titlesHtml}</br><div class="tabContent"></br></div></div>`);
   },
 
   events: {
     "click .tabTitle": 'onTitleClick'
-	},
+  },
 
   onTitleClick: function(event) {
     let clickedTab = parseInt(event.target.dataset.idx);
@@ -45,13 +45,30 @@ let TabView = Backbone.View.extend({
 
 });
 
+let TabContentView = Backbone.View.extend({
+  initialize: function() {
+    this.listenTo(this.model, 'change', this.render);
+  },
+  render: function() {
+    this.$el.html('');
+
+    let tabIndex = this.model.get('selectedTab');
+    let activeContent = tabContent[tabIndex];
+      this.$el.append(`${activeContent}`);
+  },
+  events: {}
+});
 
 
 $(document).ready(function() {
   let tabModel = new TabModel({});
-	let view = new TabView({
-		el: '.tabs',
-		model: tabModel
-	});
-	view.render();
+  let view = new TabView({
+    el: '.tabs',
+    model: tabModel
+  });
+  let content = new TabContentView({
+    el: '.content',
+    model: tabModel
+  });
+  view.render();
 });
